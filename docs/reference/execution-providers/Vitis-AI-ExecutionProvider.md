@@ -230,7 +230,7 @@ Usually, to be able to accelerate inference of Neural Network models with Vitis-
 # First N (default = 128) inputs are used for quantization calibration and will
 #   be executed on the CPU
 # This config can be changed by setting the 'PX_QUANT_SIZE' (e.g. export PX_QUANT_SIZE=64)
-imput_name = [...]
+input_name = [...]
 outputs = [session.run([], {input_name: calib_inputs[i]})[0] for i in range(128)]
 ```
 
@@ -261,7 +261,7 @@ Also, after the compilation step a `vitis_ai_dpu.rtmod` file got generated. This
 target = "DPUCZDX8G-zcu104"
 
 ```
-vitis_ai_provider_options = {'target': target, 'load_runtime_module': 'vitis_ai.rtmod'}
+vitis_ai_provider_options = {'target': target, 'load_runtime_module': 'vitis_ai_dpu.rtmod'}
 session = onnxruntime.InferenceSession(model_path, None, ["VitisAIExecutionProvider"],
                                        [vitis_ai_provider_options])
 ```
