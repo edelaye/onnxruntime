@@ -258,10 +258,10 @@ result = session.run([], {input_name: input_data})
 
 Also, after the compilation step a `vitis_ai_dpu.rtmod` file got generated. This file can be used to load the quantized runtime module. This is necessary if you want to run on a Zynq device after quantizing and compiling on a host machine. For this, move the file to the Zynq board and use the `load_runtime_module` config to skip the Vitis AI quantization and compilation step. For example:
 
-target = "DPUCZDX8G-zcu104"
 
 ```
-vitis_ai_provider_options = {'target': target, 'load_runtime_module': 'vitis_ai_dpu.rtmod'}
+dpu_target = "DPUCZDX8G-zcu104"
+vitis_ai_provider_options = {'target': dpu_target, 'load_runtime_module': 'vitis_ai_dpu.rtmod'}
 session = onnxruntime.InferenceSession(model_path, None, ["VitisAIExecutionProvider"],
                                        [vitis_ai_provider_options])
 ```
